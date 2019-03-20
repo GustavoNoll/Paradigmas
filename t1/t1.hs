@@ -1,3 +1,4 @@
+import Data.Char
 --Crie uma função isVowel :: Char -> Bool que verifique se um caracter é uma vogal ou não.
 --1
 isVowel :: Char-> Bool
@@ -55,4 +56,4 @@ lastName str = last(words str)
 toLow:: Char-> Char
 toLow l = toLower l
 userName :: String -> String
-userName user = first(toLow(words user))
+userName user = map toLow(take 1 (head(words user)) ++ last(words user))
