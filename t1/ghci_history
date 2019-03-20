@@ -1,0 +1,20 @@
+semVogais "abcediue"
+semVogais' "abcediue"
+semVogais' "abcdeFGOU"
+semVogais' "abcdeFGOU"
+semVogais' "abcdeFGOU"
+semVogais' ["abcdeFGOU"]
+semVogais' ["abcdeFGOU"]
+semVogais' ["abcdeFGOU"]
+semVogais' "ABCDE"
+htmlListItems ["ASD","FGH"]
+htmlListIteMs ["ASE","FGH"]
+htmlListItens ["ASA","FGH"]
+"<LI>" ++ "SUPER" ++ "<LI>"
+isVowel 'a'
+isVowel a
+addComma ["bad","jooog"]
+addComma ["bad","jooog]
+addComma ["bad"]
+filter A 'A'
+isVowel 'A'
