@@ -57,3 +57,21 @@ toLow:: Char-> Char
 toLow l = toLower l
 userName :: String -> String
 userName user = map toLow(take 1 (head(words user)) ++ last(words user))
+
+--10
+encodeAux :: Char -> Char
+encodeAux l
+    | l== 'A'= '4'
+    | l== 'E'='3'
+    | l== 'I'='2'
+    | l== 'O'='1'
+    | l== 'U'='0'
+    | l== 'a'= '4'
+    | l== 'e'='3'
+    | l== 'i'='2'
+    | l== 'o'='1'
+    | l== 'u'='0'
+    | otherwise = l
+
+encodeName :: String -> String
+encodeName str = map encodeAux str
