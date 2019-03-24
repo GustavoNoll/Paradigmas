@@ -1,0 +1,34 @@
+stringList ["au","AAAAAABBBbbcccc","a",""]
+betterEncodeName "au"
+betterEncodeName "lululu"
+betterEncodeName "uuu"
+encodeName "ANDERRRSOOON DA ff f"
+encodeName "ANDERRRSOOON DASJJDASdsduf"
+encodeName "ANDERRRSOOON DASJJDASdsduf'
+encodeName "ANDERRRSOOON DASJJDASdsdufhdsu'
+encodeName "ANDERRRSOOON DASJJDASdsdufhdsu 
+encodeName "andersonsilva"
+encodeAux "andersonsilva"
+userName "ssd joao"
+userName "di ca lou"
+userName "ssd joao"
+semVogais "abcediue"
+semVogais' "abcediue"
+semVogais' "abcdeFGOU"
+semVogais' "abcdeFGOU"
+semVogais' "abcdeFGOU"
+semVogais' ["abcdeFGOU"]
+semVogais' ["abcdeFGOU"]
+semVogais' ["abcdeFGOU"]
+semVogais' "ABCDE"
+htmlListItems ["ASD","FGH"]
+htmlListIteMs ["ASE","FGH"]
+htmlListItens ["ASA","FGH"]
+"<LI>" ++ "SUPER" ++ "<LI>"
+isVowel 'a'
+isVowel a
+addComma ["bad","jooog"]
+addComma ["bad","jooog]
+addComma ["bad"]
+filter A 'A'
+isVowel 'A'
