@@ -24,8 +24,8 @@ redPalette linha coluna= [(30+i*20+j*20,0,0) | i <- [0..linha-1] , j <- [0..colu
 bluePalette :: Int -> Int-> [(Int,Int,Int)]
 bluePalette linha coluna= [(0,0,30+i*20+j*20) | i <- [0..linha-1] , j <- [0..coluna-1]]
 
-greenPaletteCase2 :: Int-> [(Int,Int,Int)]
-greenPaletteCase2 n= [(toInt(sin(0.40*i)* 127 + 128),toInt(sin(0.4*i+2)* 127 + 128),toInt(sin(0.4*i + 4)* 127 + 128)) | i <- [0..fromIntegral(n-1)]]
+rainbowPalette :: Int-> [(Int,Int,Int)]
+rainbowPalette n= [(toInt(sin(0.40*i)* 127 + 128),toInt(sin(0.4*i+2)* 127 + 128),toInt(sin(0.4*i + 4)* 127 + 128)) | i <- [0..fromIntegral(n-1)]]
 
 
 
@@ -35,8 +35,8 @@ greenPaletteCase2 n= [(toInt(sin(0.40*i)* 127 + 128),toInt(sin(0.4*i+2)* 127 + 1
 -------------------------------------------------------------------------------
 
 
-genRectsCase1 :: Int -> [Rect]
-genRectsCase1 n  = [((m*(w+gapx),y*(w+gapy)),w,h) | y <- [0..fromIntegral (n-1)],m <- [0..fromIntegral (n-1)]]
+genRectsCase1 :: Int -> Int -> [Rect]
+genRectsCase1 linhas colunas  = [((m*(w+gapx),y*(w+gapy)),w,h) | y <- [0..fromIntegral (linhas-1)],m <- [0..fromIntegral (colunas-1)]]
   where (w,h) = (50,50)
         gapy = 25
         gapx = 10
@@ -104,9 +104,10 @@ genCase1 = do
   writeFile "case1.svg" $ svgstrs
   where svgstrs = svgBegin w h ++ svgfigs ++ svgEnd
         svgfigs = svgElements svgRect rects (map svgStyle palette)
-        rects = genRectsCase1 nrects
-        palette = greenPalette 5 10
-        nrects = 10
+        rects = genRectsCase1 nlinhas ncolunas
+        palette = greenPalette nlinhas ncolunas
+        nlinhas = 5
+        ncolunas = 10
         (w,h) = (1500,500) -- width,height da imagem SVG
 
 
@@ -116,7 +117,7 @@ genCase2 = do
   where svgstrs = svgBegin w h ++ svgfigs ++ svgEnd
         svgfigs = svgElements svgCirc circs (map svgStyle palette)
         circs = genCircCase2 ncircs
-        palette = greenPaletteCase2 ncircs
+        palette = rainbowPalette ncircs
         ncircs = 12
         (w,h) = (1500,500) -- width,height da imagem SVG
 
