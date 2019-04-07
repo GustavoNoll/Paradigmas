@@ -131,7 +131,7 @@ genCase3 = do
    where svgstrs = svgBegin w h ++ svgfigs ++ svgEnd
          svgfigs = svgElements svgCirc circs (map svgStyle palette)
          circs = genCircCase3 ncircs
-         palette = rgbPalette 18
+         palette = rgbPalette (ncircs*6)
          ncircs = 3
          (w,h) = (1500,500) -- width,height da imagem SVG
 
@@ -141,7 +141,7 @@ genCase4 = do
    where svgstrs = svgBegin w h ++ svgfigs ++ svgEnd
          svgfigs = svgElements svgCirc circs (map svgStyle palette)
          circs = genCircCase4 ncircs nlinhas
-         palette = (redPalette 1 14) ++  (greenPalette 1 14) ++ (bluePalette 1 14)
+         palette = (redPalette 1 ncircs) ++  (greenPalette 1 ncircs) ++ (bluePalette 1 ncircs)
          nlinhas=3
          ncircs = 14
          (w,h) = (1500,500) -- width,height da imagem SVG
