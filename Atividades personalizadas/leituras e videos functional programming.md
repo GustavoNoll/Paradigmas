@@ -1,6 +1,6 @@
 
 *Leituras e videos programação funcional
-		*Leitura: "so you want to be a functional programmer", link interessante para quem quer comecar 	em programacao funcional, o autor faz o uso de perspectivas diferentes e com isso deixa o texto bem informal e bom de ler. O autor usa o javascript como linguagem, mas e sempre bom aprender outras linguagens xD
+		*Leitura: so you want to be a functional programmer, link interessante para quem quer comecar 	em programacao funcional, o autor faz o uso de perspectivas diferentes e com isso deixa o texto bem informal e bom de ler. O autor usa o javascript como linguagem, mas e sempre bom aprender outras linguagens xD
 			1.https://medium.com/@cscalfani/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536
 			2.https://medium.com/@cscalfani/so-you-want-to-be-a-functional-programmer-part-2-7005682cec4a
 			3.https://medium.com/@cscalfani/so-you-want-to-be-a-functional-programmer-part-3-1b0fd14eb1a7
