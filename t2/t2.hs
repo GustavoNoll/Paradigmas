@@ -6,11 +6,20 @@ type Circle    = (Point,Float)
 
 
 -------------------------------------------------------------------------------
--- Paletas
+-- Aux
 -------------------------------------------------------------------------------
-
+--float em int
 toInt :: Float -> Int
 toInt x = round x
+
+
+--retorna radianos
+toRad :: Float -> Int -> Float
+toRad i j = ((i* 360/fromIntegral(j)) * (pi/180))
+
+-------------------------------------------------------------------------------
+-- Paletas
+-------------------------------------------------------------------------------
 
 rgbPalette :: Int -> [(Int,Int,Int)]
 rgbPalette n = take n $ cycle [(255,0,0),(0,255,0),(0,0,255)]
@@ -31,7 +40,7 @@ rainbowPalette n= [(toInt(sin(0.40*i)* 127 + 128),toInt(sin(0.4*i+2)* 127 + 128)
 
 
 -------------------------------------------------------------------------------
--- Gera��o de ret�ngulos em suas posi��es
+-- Gera��o de ret�ngulos e circulos em suas posi��es
 -------------------------------------------------------------------------------
 
 
@@ -40,11 +49,6 @@ genRectsCase1 linhas colunas  = [((m*(w+gapx),y*(w+gapy)),w,h) | y <- [0..fromIn
   where (w,h) = (50,50)
         gapy = 25
         gapx = 10
-
-
-toRad :: Float -> Int -> Float
-toRad i j = ((i* 360/fromIntegral(j)) * (pi/180))
-
 
 genCircCase2 :: Int -> [Circle]
 genCircCase2 n  =  [(((gap) * cos(toRad i n) + 130, (gap) * sin(toRad i n)+130),r) | i <- [0..fromIntegral(n-1)]]
