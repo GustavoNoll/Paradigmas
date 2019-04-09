@@ -58,14 +58,27 @@ genCircCase2 n  =  [(((gap) * cos(toRad i n) + 130, (gap) * sin(toRad i n)+130),
 genCircCase3 :: Int -> [Circle]
 genCircCase3 n  = [((gapMenor*sin(toRad i n) + (gapMaior*j) + (r*2), (k*gapMaior) + gapMenor * (-cos(toRad i n)) + (r*2)),r) | k <- [0..fromIntegral(n-2)], j <- [0..fromIntegral(n-1)],i <- [0..fromIntegral(n-1)]]
     where gapMenor=r/2 + 7
+          gapMaior= r*5
           r=30
-          gapMaior= 150
+
 genCircCase4 :: Int -> Int -> [Circle]
 genCircCase4 n j = [(((r*2*i)+r,  k * gapColunas + coef * sin(toRad i (n-2)) + gapMaior ),r) | k <- [0..fromIntegral(j-1)], i<-[0..fromIntegral(n-1)]]
-    where gapMaior =100
-          gapColunas=150
+    where gapMaior =coef*2
+          gapColunas=coef*3
           r=20
           coef=50
+
+genCircCase5 :: Int -> Int -> Float ->[Circle]
+genCircCase5 n j coef = [((inicialx+(i*coef),(k*coef)+inicialy),r) | i <- [0..fromIntegral(j-1)], k<-[0..fromIntegral(n-1)]]
+    where inicialx =r*2
+          inicialy =r
+          r=50
+
+genCircCase6 :: Int ->[Circle]
+genCircCase6 n  = [((gapMenor*sin(toRad i n) + (gapMaior*j) + (r*2),gapMenor * cos(toRad i n) + (r*2)),r) |j <- [0..fromIntegral(n-(n-1))],i <- [0..fromIntegral(n-1)]]
+    where gapMenor=r
+          gapMaior= r*5
+          r=100
 
 -------------------------------------------------------------------------------
 -- Strings SVG
@@ -144,4 +157,26 @@ genCase4 = do
          palette = (redPalette 1 ncircs) ++  (greenPalette 1 ncircs) ++ (bluePalette 1 ncircs)
          nlinhas=3
          ncircs = 14
+         (w,h) = (1500,500) -- width,height da imagem SVG
+
+genCase5 :: IO()
+genCase5 = do
+   writeFile "case5.svg" $ svgstrs
+   where svgstrs = svgBegin w h ++ svgfigs ++ svgEnd
+         svgfigs = svgElements svgCirc circs (map svgStyle palette)
+         circs = genCircCase5 ncircs nlinhas coef
+         palette = rainbowPalette (ncircs*nlinhas)
+         coef = 60-- usar entre 0 a 100, caso maior mudar raio
+         nlinhas=3
+         ncircs = 3
+         (w,h) = (1500,500) -- width,height da imagem SVG
+
+genCase6 ::IO()
+genCase6 = do
+   writeFile "case6.svg" $ svgstrs
+   where svgstrs = svgBegin w h ++ svgfigs ++ svgEnd
+         svgfigs = svgElements svgCirc circs (map svgStyle palette)
+         circs = genCircCase6 ncircs
+         palette = (bluePalette 1 ncircs) ++ rainbowPalette ncircs
+         ncircs = 7
          (w,h) = (1500,500) -- width,height da imagem SVG
