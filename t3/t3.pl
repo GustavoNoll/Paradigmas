@@ -1,5 +1,5 @@
 %1
-odd(N) :- 1 is mod(N,2)
+odd(N) :- 1 is mod(N,2).
 
 %2
 hasN([],0).
