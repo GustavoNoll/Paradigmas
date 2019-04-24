@@ -11,39 +11,35 @@ hasN(L,N) :-
 %3
 inc99([],[]).
 inc99(L1,L2) :-
-  L1 = [H|T],
-  L2 = [H1|T1],
+  L1 = [H|T],L2 = [H1|T1],
   H1 is H+99,
-  inc99(T,T1).
+  inc99(T,T1),!.
 
 %4
 incN([],[],_).
 incN(L1,L2,N) :-
-  L1 = [H|T],
-  L2 = [H1|T1],
+  L1 = [H|T], L2 = [H1|T1],
   H1 is H+N,
-  incN(T,T1,N).
+  incN(T,T1,N),!.
 
 %5
 comment([],[]).
 comment(L1,L2) :-
-  L1 = [H|T],
-  L2 = [H1|T1],
+  L1 = [H|T], L2 = [H1|T1],
   string_concat("%%", H, H1),
   comment(T,T1).
 
 %6
 onlyEven([],[]).
 onlyEven(L1,L2) :-
-  L1 = [H|T],
+  L1 = [H|T], L2 = [H1|T1],
   0 is mod(H,2),
-  L2 = [H1|T1],
   H1 is H,
   onlyEven(T,T1), !.
 
 onlyEven(L1,L2) :-
   L1 = [_|T],
-  onlyEven(T,L2).
+  onlyEven(T,L2),!.
 
 %7
 countdownGeral(I,N,L) :-
@@ -52,7 +48,6 @@ countdownGeral(I,N,L) :-
   I<N,countdownC(I,N,L),!.
 countdownGeral(I,N,L) :-
   I>N,countdownD(I,N,L),!.
-
 
 countdownD(I,N,L) :-
   N>I,L=[].
@@ -96,9 +91,7 @@ potN0(N,L) :-
 %10
 zipmult([],[],[]).
 zipmult(L1,L2,L3) :-
-  L1 = [H1|T1],
-  L2 = [H2|T2],
-  L3 = [H3|T3],
+  L1 = [H1|T1],L2 = [H2|T2],L3 = [H3|T3],
   H3 is H1*H2,
   zipmult(T1,T2,T3), !.
 
