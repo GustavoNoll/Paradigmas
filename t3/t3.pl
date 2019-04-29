@@ -107,3 +107,11 @@ potencias2(I, N, L) :-
 potencias(N,L) :-
   I is 0,
   potencias2(I, N, L).
+
+cedulas(_,[],[]).
+cedulas(V,L1,L2) :-
+  L1=[H|T],
+  L2=[H1|T1],
+  H1 is V//H,
+  V1 is mod(V,H),
+  cedulas(V1,T,T1),!.
