@@ -108,6 +108,7 @@ potencias(N,L) :-
   I is 0,
   potencias2(I, N, L).
 
+%12
 cedulas(_,[],[]).
 cedulas(V,L1,L2) :-
   L1=[H|T],
