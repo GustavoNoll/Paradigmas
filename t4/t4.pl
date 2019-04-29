@@ -1,25 +1,26 @@
-assasino(X,Y) :- motivacao(X,Y), acesso(X).
+assasino(X,Y) :- motivacao(X,Y), acesso(X,_,_,_).
 
-acesso(X) :-
-  (bastao(X) ; martelo(X)),
-  chave(X),
-  presente(X).
+acesso(X,Y,Z,Y1) :-
+  (bastao(X,Y) ; martelo(X,Y)),
+  chave(X,Z),
+  presente(X,Y1),
+  Y \= Z,Y \= Y1,Y1 \= Z.
 
 %momento do crime
-presente(X):-
-  sexta(X,apartamento);
-  quinta(X,apartamento).
+presente(X,Y):-
+  sexta(X,apartamento),Y=sexta;
+  quinta(X,apartamento),Y=quinta.
 
 %dinheiro
 dinheiro(X) :- pobre(X).
 
 %O bastão de baseball que foi roubado do amigo pobre de Anita, Bernardo, na quinta-feira em Porto Alegre ou na quarta-feira em Santa MariaO martelo que foi roubado da caixa de ferramentas do apartamento na quarta ou na quinta-feira.
-bastao(X) :-
-  quinta(X,porto_alegre);quarta(X,santa_maria).
+bastao(X,Y) :-
+  (quinta(X,porto_alegre),Y=quinta);(quarta(X,santa_maria),Y=quarta).
 
 %O martelo que foi roubado da caixa de ferramentas do apartamento na quarta ou na quinta-feira.
-martelo(X) :-
-  quarta(X,apartamento);quinta(X,apartamento).
+martelo(X,Y) :-
+  (quarta(X,apartamento),Y=quarta);(quinta(X,apartamento),Y=quinta).
 
 %motivos
 motivacao(X,Y) :- insano(X),Y = insanidade.
@@ -33,7 +34,7 @@ vitima(anita).
 ciumes(X) :- relacionamento(anita,Y),relacionamento(Y,X).
 
 %chave
-chave(X) :- quarta(X,santa_maria);terca(X,porto_alegre).
+chave(X,Y) :- (quarta(X,santa_maria),Y=quarta);(terca(X,porto_alegre),Y=terca).
 
 %dinheiro
 dinheiro(X) :- pobre(X).
