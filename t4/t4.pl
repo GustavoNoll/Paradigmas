@@ -1,10 +1,10 @@
-assasino(X,Y) :- motivacao(X,Y), acesso(X,_,_,_).
+assassino(X,Y) :- motivacao(X,Y), acesso(X,_,_,_).
 
-acesso(X,Y,Z,Y1) :-
-  (bastao(X,Y) ; martelo(X,Y)),
-  chave(X,Z),
-  presente(X,Y1),
-  Y \= Z,Y \= Y1,Y1 \= Z.
+acesso(X,W,Y,Z) :-
+  (bastao(X,W) ; martelo(X,W)),
+  chave(X,Y),
+  presente(X,Z),
+  W \= Y,W \= Z,Y \= Z.
 
 %momento do crime
 presente(X,Y):-
