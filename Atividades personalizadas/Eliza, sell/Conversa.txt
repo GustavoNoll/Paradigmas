@@ -1,0 +1,41 @@
+Hello. Im not a robot,Im just a inteligent seller. How can I help you?
+> hello
+How do you do. Please state your problem.
+>i need to buy a car
+Buy car on hyundai, at hyundai.com, im not paid
+> is hyundai car good?
+The best company the best cars
+>how can i buy a hyundai car?
+You should see hyundai car
+>how can i buy?
+I just sell cars and shoes
+> where i could buy a car
+Buy car on hyundai, at hyundai.com, im not paid
+> what do you sell?/
+I sell cars and shoes, you can find it on hyundai.com and nethoes.com
+> netshoes is good?
+Netshoes is wonderful
+> how can i buy a netshoes
+Search a netshoes on google
+> what is netshoes
+You should buy one
+> do you have the link?
+I like these links hyundai.com and nethoes.com
+> i want to buy a new boot
+Buy boot on netshoes its cheap
+> i want to buy a new sneaker
+You will find sneaker on netshoes
+> what do you sell?
+Find what i sell on hyundai.com and nethoes.com
+> what do you buy?
+I cant buy, Im a robot, dont you remember?
+> dont you buy?
+I was made to sell, not to buy
+> i need to buy a new tv
+I would like to sell it for you but I dont have it
+> ok
+Another problem?
+> no
+Will you leave without saying bye?
+> bye
+Goodbye. My secretary will send you a bill.

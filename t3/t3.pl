@@ -25,7 +25,7 @@ incN(L1,L2,N) :-
 %5
 comment([],[]).
 comment(L1,L2) :-
-  L1 = [H|T], L2 = [H1|T1],
+  L1 = [H|T], L2 =  [H1|T1],
   string_concat("%%", H, H1),
   comment(T,T1).
 

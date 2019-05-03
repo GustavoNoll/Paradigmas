@@ -60,7 +60,7 @@ sr([am|X],[are|Y],X,Y).
 sr([your|X],[my|Y],X,Y).
 sr([were|X],[was|Y],X,Y).
 sr([me|X],[you|Y],X,Y).
-?sr([you,are|X],[im|Y],X,Y).      % im = i'm = i am
+sr([you,are|X],[im|Y],X,Y).      % im = i'm = i am
 sr([i,am|X],[youre|Y],X,Y).      % youre = you're = you are =\= your
 sr([myself|X],[yourself|Y],X,Y).
 sr([yourself|X],[myself|Y],X,Y).
@@ -112,9 +112,10 @@ rules([[remember,5],[
 		[what,about,Y,?],
 		[equal,[what,0]],
 		[you,mentioned,Y,.]],
-	[4,[_,she,remember,Y],0,
-		[who,is,she,?],
-	[3,[_],0,
+	[3,[_,she,remember,Y],0,
+	  [who,is,she,?],
+		[who,are,you,talking,?]],
+	[4,[_],0,
 		[newkey]]]]).
 
 rules([[if,3],[
@@ -141,7 +142,7 @@ rules([[dream,3],[
 		[newkey]]]]).
 
 rules([[none,0],[
-	[1,[_],0,
+	[3,[_],0,
 		['I',am,not,sure,'I',understand,you,fully,.],
 		[please,go,on,.],
 		[what,does,that,suggest,to,you,?],
@@ -325,7 +326,7 @@ rules([[yes,0],[
 
 rules([[no,0],[
 	[1,[_],0,
-		[are,you,saying,no,just,to,be,negative,?],
+		[will,you,leave,without,saying,bye,?],
 		[you,are,being,a,bit,negative,.],
 		[why,not,?],
 		[why,no,?]]]]).
@@ -380,18 +381,68 @@ rules([[because,0],[
 		[does,that,reason,seem,to,explain,anything,else,?],
 		[what,other,reasons,might,there,be,?]]]]).
 
+rules([[buy,5],[
+		[1,[_,you,_,buy,_,[*,shoe,shoes,boot,boots,sneaker,sneakers,M]],0,
+			[buy,M,on,netshoes,its,cheap],
+			[you,will,find,M,on,netshoes],
+			['I',usually,buy,my,virtual,M,on,'netshoes.com']],
+		[2,[_,you,_,buy,_,[*,car,cars,vehicle,M]],0,
+			[buy,M,on,hyundai,',',at,'hyundai.com',',',im,not,paid],
+			[you,should,see,hyundai,M],
+			['I',like,hyundai,M,you,should,think,about,that]],
+		[3,[_,i,_,buy],0,
+			['I',cant,buy,',','Im',a,robot,',',dont,you,remember,?],
+			['I',was,made,to,sell,',',not,to,buy]],
+		[4,[_,i,buy],0,
+			['I',cant,buy,',','Im',a,robot,',',dont,you,remember,?],
+			['I',was,made,to,sell,',',not,to,buy]],
+		[5,[_,you,_,buy,Y],0,
+			['I',just,sell,cars,and,shoes],
+			[search,Y,on,google],
+			['I',would,like,to,sell,it,for,you,but,'I',dont,have,it]],
+		[5,[_],0,
+			[what,do,you,want,to,buy,?],
+			[buy,?,buy,everything,on,netshoes],
+			['I',heard,car,?,buy,hyundai,car]]]]).
+
+rules([[sell,5],[
+		[1,[what,_,i,sell],0,
+			['I',sell,cars,and,shoes,',',you,can,find,it,on,'hyundai.com',and,'nethoes.com'],
+			['I',sell,the,best,cars,and,shoes,of,the,world],
+			[find,what,i,sell,on,'hyundai.com',and,'nethoes.com']],
+		[2,[where,_,i,sell,_],0,
+			['hyundai.com',and,'nethoes.com']],
+		[3,[how,_,i,sell,_],0,
+			[you,can,buy,in,our,website]],
+		[4,[_,i,sell,_],0,
+			[find,cars,and,shoes,at,'hyundai.com',and,'nethoes.com']],
+		[5,[_],0,
+			[i,didnt,understand,do,you,want,to,sell,?],
+			[do,you,want,to,buy,?],
+			['I',sell,cars,and,shoes,do,you,want,this,?]]]]).
+
+rules([[website,10],[
+		[1,[_,website,_],0,
+			['hyundai.com',and,'nethoes.com']],
+		[2,[website],0,
+		  ['hyundai.com',and,'nethoes.com']]]]).
+
+rules([[link,10],[
+		[1,[_,link,_],0,
+			['I',like,these,links,'hyundai.com',and,'nethoes.com'],
+			[do,you,know,hyundai,and,netshoes,link,?]]]]).
 rules([[why,0],[
 	[1,[_,why,dont,i,Y],0,
 		[do,you,believe,'I',do,not,Y,?],
 		[perhaps,'I',will,Y,in,good,time,.],
 		[should,you,Y,yourself,?],
-                [you,want,me,to,Y,?],
+    [you,want,me,to,Y,?],
 		[equal,[what,0]]],
 	[2,[_,why,cant,you,Y],0,
 		[do,you,think,you,should,be,able,to,Y,?],
 		[do,you,want,to,be,able,to,Y,?],
 		[do,you,believe,this,will,help,you,to,Y,?],
-                [have,you,any,idea,why,you,can,not,Y,?],
+    [have,you,any,idea,why,you,can,not,Y,?],
 		[equal,[what,0]]]]]).
 
 rules([[everyone,2],[
@@ -413,11 +464,50 @@ rules([[always,1],[
 		[what,incident,are,you,thinking,of,?],
 		[really,',',always,?]]]]).
 
-rules([[like,10],[
-        [1,[_,[*,im,youre,am,is,are,was,_],_,like,_],0,
+rules([[like,6],[
+	[1,[you,like,_,website],0,
+		[have,you,already,bought,with,us,?],
+		[our,programmers,are,the,best],
+		[after,you,buy,the,website,become,better]],
+	[2,[you,like,_,Y],0,
+		[dont,you,like,our,website,?],
+		[i,think,you,would,link,to,buy,with,us],
+		[i,like,Y,too]],
+  [3,[_,[*,im,youre,am,is,are,was,_],like,_],0,
 		[equal,[dit,10]]],
-	[2,[_],0,
+	[4,[_],0,
 		[newkey]]]]).
+
+rules([[ok,5],[
+	[1,[ok],0,
+		[another,problem,?],
+		[something,more,to,tell,?],
+		[are,you,going,without,saying,me,a,bye,?],
+		[you,can,ask,again]]]]).
+
+rules([[hyundai,3],[
+  [1,[hyundai],0,
+		['hyundai.com']],
+	[2,[_,is,hyundai,_],0,
+			[the,best,company,the,best,cars],
+			[you,should,buy,one],
+			[what,are,you,waiting]],
+	[3,[_,hyundai,is,_],0,
+			[hyundai,is,wonderful],
+			['I',drive,a,hyundai,and,you,?],
+			[really,?]]]]).
+
+rules([[netshoes,3],[
+	[1,[netshoes],0,
+		['netshoes.com']],
+	[2,[_,is,netshoes,_],0,
+		[the,best,company,the,best,shoes],
+		[you,should,buy,one],
+		[what,are,you,waiting]],
+	[2,[_,netshoes,is,_],0,
+		[netshoes,is,wonderful],
+		['I',buy,all,my,shoes,in,netshoes,?],
+		[really,?]]]]).
 
 rules([[dit,10],[
 	[1,[_],0,
@@ -434,6 +524,9 @@ rules([[quit,100],[
 	[1,[_],0,
 		[goodbye,.,'My',secretary,will,send,you,a,bill,.]]]]).
 
+rules([[bye,100],[
+	[1,[_],0,
+		[goodbye,.,'My',secretary,will,send,you,a,bill,.]]]]).
 
 /*****************************************************************************/
 % my_char_type(+Char,?Type)
@@ -860,6 +953,7 @@ writecomment_aux([H|T]) :-
 %    checks if the atom 'quit' is in the InputList
 
 quittime(X) :- member('quit',X).
+quittime(X) :- member('bye',X).
 
 
 /****************************************************************************/
@@ -869,7 +963,7 @@ quittime(X) :- member('quit',X).
 eliza :-
 %	reconsult('eliza.rls'),
 	retractall(mem(_)),nl,nl,
-        write('Hello. I am ELIZA. How can I help you?'),nl,write('> '),
+        write('Hello. Im not a robot,Im just a inteligent seller. How can I help you?'),nl,write('> '),
 	repeat,
 	   read_atomics(Input),nl,
            process_input(Input,[],Input2),
@@ -884,5 +978,3 @@ eliza :-
 
 
 :- eliza,nl,nl.
-
-
