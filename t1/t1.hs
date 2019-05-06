@@ -2,7 +2,7 @@ import Data.Char
 --Crie uma função isVowel :: Char -> Bool que verifique se um caracter é uma vogal ou não.
 --1
 isVowel :: Char-> Bool
-isVowel letter= if length(filter(\l -> l ==letter) "aeiouAEIOU") > 0 then True else False
+isVowel letter= if length(filter(\l -> l == letter) "aeiouAEIOU") > 0 then True else False
 --2
 --Escreva uma função addComma, que adicione uma vírgula no final de cada string contida numa lista.
 addComma :: [String] -> [String]
@@ -11,6 +11,7 @@ addComma list=map (++ ",") list
 
 --3
 --Crie uma função htmlListItems :: [String] -> [String], que receba uma lista de strings e retorne outra lista contendo as strings formatadas como itens de lista em HTML.
+concathtml :: String -> String
 concathtml x = "<LI>" ++ x ++ "<LI>"
 htmlListItems :: [String] -> [String]
 htmlListItems list =map concathtml list
@@ -24,7 +25,7 @@ semVogais' :: String -> String
 semVogais' palavra = filter(\l -> l /= 'A' && l/= 'E' && l/= 'I' && l/= 'O' && l/= 'U' && l/= 'a' && l/= 'e' && l/= 'i' && l/= 'o' && l/= 'u' ) palavra
 
 semVogal :: Char-> Bool
-semVogal x = length(filter(\l -> l == x) "aeiouAEIOU") == 0
+semVogal x = not(isVowel x)
 
 semVogais :: String -> String
 semVogais str= filter semVogal str
@@ -86,10 +87,10 @@ encodeName str = map encodeAux str
 
 
 --11
---Escreva uma função betterEncodeName :: String -> String que substitua vogais em uma string, conforme este esquema: a = 4, e = 3, i = 1, o = 0, u = 00.
+--Escreva uma função bette\rEncodeName :: String -> String que substitua vogais em uma string, conforme este esquema: a = 4, e = 3, i = 1, o = 0, u = 00.
 
 betterEncodeName :: String -> String
-betterEncodeName[] = []
+betterEncodeName [] = []
 betterEncodeName (x:xs) = vog2num x ++ betterEncodeName xs
 
 vog2num :: Char -> String

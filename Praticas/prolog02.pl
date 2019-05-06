@@ -4,12 +4,19 @@ is_member(A, L) :-
   L=[_|T],
   is_member(A,T).
 
+is_members(A,L) :-
+  member(A,L).
+
 
 ao_lado(X, Y , [Y,X|_]).
 ao_lado(X, Y , [X,Y|_]).
 ao_lado(X, Y, L) :-
   L = [_|T],
   ao_lado(X,Y,T).
+
+ao_lados(X,Y,L) :-
+  nextto(X,Y,L);
+  nextto(Y,X,L).
 
 um_entre(X,Y, [X,_,Y|_]).
 um_entre(X,Y, [Y,_,X|_]).
@@ -19,23 +26,23 @@ um_entre(X, Y, L) :-
 
 
   solucao(Casas, Dono_Peixe) :-
-    Casas = [_, _, _, _, _], 				% a solucao é uma lista com 5 elementos
-    member(casa(vermelha, ingles, _, _, _), Casas), 	% Condição 1: esta casa é membro da solucao
-    member(casa(_, sueco, cachorro, _, _), Casas),	% Condição 2: esta casa também, e assim por diante
+    Casas = [_, _, _, _, _], 				% a solucao ï¿½ uma lista com 5 elementos
+    member(casa(vermelha, ingles, _, _, _), Casas), 	% Condiï¿½ï¿½o 1: esta casa ï¿½ membro da solucao
+    member(casa(_, sueco, cachorro, _, _), Casas),	% Condiï¿½ï¿½o 2: esta casa tambï¿½m, e assim por diante
     member(casa(_, dinamarques, _, cha, _), Casas),
     nextto(casa(verde,_,_,_,_), casa(branca,_,_,_,_), Casas),
     member(casa(verde, _, _, cafe, _), Casas),
     member(casa(_, _, passaro, _, pallmall), Casas),
     member(casa(amarela, _, _, _, dunhill), Casas),
-    [_, _, casa(_, _, _, leite, _), _, _] = Casas,	% Condição 8: na casa do centro se bebe leite
-    [casa(_, noruegues, _, _, _) | _] = Casas,		% Condição 9: primeira casa
+    [_, _, casa(_, _, _, leite, _), _, _] = Casas,	% Condiï¿½ï¿½o 8: na casa do centro se bebe leite
+    [casa(_, noruegues, _, _, _) | _] = Casas,		% Condiï¿½ï¿½o 9: primeira casa
     ao_lado(casa(_, _, _, _, blends), casa(_, _, gato, _, _), Casas),
     ao_lado(casa(_, _, _, _, dunhill), casa(_, _, cavalo, _, _), Casas),
     member(casa(_, _, _, cerveja, bluemaster), Casas),
     member(casa(_, alemao, _, _, prince), Casas),
     ao_lado(casa(_, noruegues, _, _, _), casa(azul, _, _, _, _), Casas),
     ao_lado(casa(_, _, _, _, blends), casa(_, _, _, agua, _), Casas),
-    member(casa(_, Dono_Peixe, peixe, _, _), Casas).	% Condição final, para saber quem cria peixes
+    member(casa(_, Dono_Peixe, peixe, _, _), Casas).	% Condiï¿½ï¿½o final, para saber quem cria peixes
 
 solucao_aviao(Avioes) :-
       Avioes = [_, _, _, _, _],
@@ -76,4 +83,3 @@ aux([], N, N).
 aux([X|Xs], M, N) :-
    M1 is max(X, M),
    aux(Xs, M1, N).
-

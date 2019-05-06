@@ -2,6 +2,10 @@ add10toall :: [Int] -> [Int]
 add10toall [] = []
 add10toall xs = [x + 10 | x <- xs]
 
+add10toall' :: [Int] -> [Int]
+add10toall' xs = map (\x -> x+10) xs
+
+
 multN :: Int -> [Int] -> [Int]
 multN _ [] = []
 multN n xs = [x*n| x<- xs]
@@ -14,9 +18,12 @@ addSuffix :: String -> [String] -> [String]
 addSuffix _ []=[]
 addSuffix suf str = [s ++ suf| s<-str]
 
+addSuffix' :: String -> [String] -> [String]
+addSuffix' suf str = map (++suf) str
+
 selectgt5 :: [Int] -> [Int]
 selectgt5 []=[]
-selectgt5 xs = [x |x<-xs,x>5]
+selectgt5 xs = filter (>5) xs
 
 sumOdds :: [Int] -> Int
 sumOdds [] =0
