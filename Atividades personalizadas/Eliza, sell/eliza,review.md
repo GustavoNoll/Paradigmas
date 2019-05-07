@@ -14,4 +14,6 @@ para gerar uma resposta ao usuário.
   Em seguida,Eilza aplica um "padrões de remontagem" que seria uma resposta à entrada analisada. Por exemplo, digamos que houve um match de uma frase 'what do you sell', com a keyword 'sell', para
 decidir qual tipo de resposta que o bot irá dar, pode ser dado padrões, como [1,[what,_,i,sell,_]. '1' é o numero do padrão,[what,_,i,sell,_] é o padrão, ou seja, quando houve essas palavras, nessa ordem irá entrar nessa seção de resposta. Simplificando, quando o frase digitada pelo usuário tiver o mesmo padrão desse response matching irá dar uma das respostas disponíveis.
 A entrada anterior é salva e, se Eliza não puder encontrar um padrão para responder, ela pode mencionar uma declaração anterior e pedir ao usuário que a elabore. Se não houver entrada salva e nenhuma chave correspondente, a Eliza gera a chave "xnone" para trabalhar. Normalmente, ele seleciona de um conjunto de respostas padrão, como "Can you elaborate on that"
-  
+4. **Example**
+
+![Screenshot_5](https://user-images.githubusercontent.com/48497060/57324054-75537d80-70dd-11e9-9f0b-0e9a73a6eb00.png)
