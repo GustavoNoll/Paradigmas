@@ -1,4 +1,4 @@
-#Eliza,explained
+# Eliza,explained
   Esse arquivo irá explicar como funciona o chatbot Eliza,
 um dos primeiros 'chatter bot' da história.
   Eliza funciona através de regras, primeiramente busca-se as palavras digitadas pelo usuário e tenta combinar essas palavras com alguma regra já definida
