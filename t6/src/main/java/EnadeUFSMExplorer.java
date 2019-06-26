@@ -30,6 +30,8 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
+
+//t6 com barchart
 public class EnadeUFSMExplorer extends Application {
 
     private final TableView<DataEntry> table= new TableView<>();
@@ -58,20 +60,19 @@ public class EnadeUFSMExplorer extends Application {
             csvFile.CSVReader();
         } catch (IOException e) {
             alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setContentText("Error on file reader");
+            alert.setContentText("Erro na leitura/falha na conexao");
         }
         table.setItems(csvFile.data);
 
 
-        // Quando uma linha da tabela é selecionada,
-        // atualiza textfield com dado da segunda coluna
+        //linha selecionada
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, newSel) -> {
             DataEntry selectedItem = table.getSelectionModel().getSelectedItem();
 
             HBox secondaryHBox = new HBox();
             Alert imageAlert=new Alert(Alert.AlertType.NONE);
 
-
+            //image
             ImageView imgView=new ImageView();
             try {
                 Image img = new Image(selectedItem.getImagem(), 600, 500, true, true);
@@ -84,6 +85,7 @@ public class EnadeUFSMExplorer extends Application {
             }
             System.out.println(imgView);
 
+            //barchart
             CategoryAxis xAxis = new CategoryAxis();
             NumberAxis yAxis = new NumberAxis();
             BarChart<String,Number> barchartDados =
@@ -136,16 +138,10 @@ public class EnadeUFSMExplorer extends Application {
             Stage newWindow = new Stage();
             newWindow.setTitle("Questao"+ selectedItem.getIdQuestao()+"/"+selectedItem.getAno());
             newWindow.setScene(secondScene);
-            // Specifies the modality for new window.
             newWindow.initModality(Modality.WINDOW_MODAL);
-
-            // Specifies the owner Window (parent) for new window
             newWindow.initOwner(stage);
-
-            // Set position of second window, related to primary window.
             newWindow.setX(stage.getX() + 200);
             newWindow.setY(stage.getY() + 100);
-
             newWindow.show();
             if(alert.getAlertType()== Alert.AlertType.WARNING)
                     alert.show();
@@ -177,17 +173,10 @@ public class EnadeUFSMExplorer extends Application {
             Stage newWindow = new Stage();
             newWindow.setTitle("Source");
             newWindow.setScene(secondScene);
-
-            // Specifies the modality for new window.
             newWindow.initModality(Modality.WINDOW_MODAL);
-
-            // Specifies the owner Window (parent) for new window
             newWindow.initOwner(stage);
-
-            // Set position of second window, related to primary window.
             newWindow.setX(stage.getX() + 200);
             newWindow.setY(stage.getY() + 100);
-
             newWindow.show();
 
             saveButton.setOnAction(s->{
@@ -210,13 +199,8 @@ public class EnadeUFSMExplorer extends Application {
             newWindow.setTitle("About");
             newWindow.setScene(secondScene);
 
-            // Specifies the modality for new window.
             newWindow.initModality(Modality.WINDOW_MODAL);
-
-            // Specifies the owner Window (parent) for new window
             newWindow.initOwner(stage);
-
-            // Set position of second window, related to primary window.
             newWindow.setX(stage.getX() + 200);
             newWindow.setY(stage.getY() + 100);
 
