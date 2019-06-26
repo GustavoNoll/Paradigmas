@@ -69,27 +69,20 @@ public class EnadeUFSMExplorer extends Application {
             DataEntry selectedItem = table.getSelectionModel().getSelectedItem();
 
             HBox secondaryHBox = new HBox();
-            Image img;
-            ImageView imgView=new ImageView();
             Alert imageAlert=new Alert(Alert.AlertType.NONE);
-            if(Files.exists(Paths.get(selectedItem.getAno()+selectedItem.getIdQuestao()+".png"))){
-                img=new Image("file:" + selectedItem.getAno() + selectedItem.getIdQuestao() + ".png",600,500,true,true);
+
+
+            ImageView imgView=new ImageView();
+            try {
+                Image img = new Image(selectedItem.getImagem(), 600, 500, true, true);
                 imgView.setImage(img);
                 secondaryHBox.getChildren().add(imgView);
-            }else{
-                if(!(selectedItem.getImagem()==null) && !(selectedItem.getImagem().isEmpty())) {
-                    try (InputStream in = URI.create(selectedItem.getImagem()).toURL().openStream()) {
-                        Files.copy(in, Paths.get(selectedItem.getAno() + selectedItem.getIdQuestao() + ".png"));
-                        img = new Image("file:" + selectedItem.getAno() + selectedItem.getIdQuestao() + ".png",600,500,true,true);
-                        imgView.setImage(img);
-                        secondaryHBox.getChildren().add(imgView);
-                    } catch (IOException ex) {
-                        imageAlert.setAlertType(Alert.AlertType.WARNING);
-                        imageAlert.setContentText("Falha na url/conexao");
-                        imageAlert.show();
-                    }
-                }
+                System.out.println("aAA");
+            } catch (Exception e) {
+                imageAlert.setAlertType(Alert.AlertType.WARNING);
+                imageAlert.setContentText("Erro ao carregar imagem da questao ou imagem nao existe");
             }
+            System.out.println(imgView);
 
             CategoryAxis xAxis = new CategoryAxis();
             NumberAxis yAxis = new NumberAxis();
@@ -233,6 +226,7 @@ public class EnadeUFSMExplorer extends Application {
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 10, 10, 10));
         vbox.getChildren().addAll(menuBar, table);
+        stage.setTitle("Enade UFSM Explorer");
         stage.setScene(new Scene(vbox,1000,1000));
         stage.show();
         if(alert.getAlertType()!= Alert.AlertType.NONE)
