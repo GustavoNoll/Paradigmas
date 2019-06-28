@@ -22,13 +22,13 @@ public class OpenCSVReader {
 
     private void CSVReaderAux() throws IOException {
         try (
-            Reader reader = Files.newBufferedReader(Paths.get(fileName));
-            CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build()
+                Reader reader = Files.newBufferedReader(Paths.get(fileName));
+                CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build()
         ){
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) { DataEntry record=new DataEntry(nextRecord[1],nextRecord[2],nextRecord[3],nextRecord[4],nextRecord[5],
-                        nextRecord[8],nextRecord[9],nextRecord[10],nextRecord[11],nextRecord[7],nextRecord[17]);
-            data.add(record);
+                    nextRecord[8],nextRecord[9],nextRecord[10],nextRecord[11],nextRecord[7],nextRecord[17]);
+                data.add(record);
             }
         }
     }
@@ -41,9 +41,15 @@ public class OpenCSVReader {
                 CSVReaderAux();
             }
         } catch (IOException e) {
-            try(InputStream in = URI.create(url).toURL().openStream()) {
-                Files.copy(in, Paths.get(fileName));
-                data.clear();
+            CSVThread csvThread=new CSVThread(url,fileName);
+            csvThread.start();
+            try {
+                csvThread.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+            data.clear();
+            if(csvThread.getBaixou()) {
                 CSVReaderAux();
             }
         }

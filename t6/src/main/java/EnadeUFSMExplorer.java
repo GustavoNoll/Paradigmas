@@ -14,7 +14,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -23,9 +22,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.*;
-import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -73,17 +69,20 @@ public class EnadeUFSMExplorer extends Application {
             Alert imageAlert=new Alert(Alert.AlertType.NONE);
 
             //image
-            ImageView imgView=new ImageView();
+            ImageThread imgT=new ImageThread(selectedItem.getImagem());
+            imgT.start();
             try {
-                Image img = new Image(selectedItem.getImagem(), 600, 500, true, true);
-                imgView.setImage(img);
-                secondaryHBox.getChildren().add(imgView);
-                System.out.println("aAA");
-            } catch (Exception e) {
+                imgT.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(imgT.falha_img){
                 imageAlert.setAlertType(Alert.AlertType.WARNING);
                 imageAlert.setContentText("Erro ao carregar imagem da questao ou imagem nao existe");
+            }else{
+                secondaryHBox.getChildren().add(imgT.getImgView());
             }
-            System.out.println(imgView);
+            ImageView imgView=new ImageView();
 
             //barchart
             CategoryAxis xAxis = new CategoryAxis();
@@ -144,7 +143,7 @@ public class EnadeUFSMExplorer extends Application {
             newWindow.setY(stage.getY() + 100);
             newWindow.show();
             if(alert.getAlertType()== Alert.AlertType.WARNING)
-                    alert.show();
+                alert.show();
             if(imageAlert.getAlertType()== Alert.AlertType.WARNING)
                 imageAlert.show();
         });
